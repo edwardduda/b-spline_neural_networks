@@ -1,0 +1,41 @@
+data:
+  dataset_name: "karpathy/tinystories-gpt4-clean"
+  tokenizer_name: "gpt2"
+  seq_len: 512
+  batch_size: 8
+  val_ratio: 0.05
+  num_workers: 0
+  cache_dir: "data_cache"
+
+model:
+  type: "kan"
+  d_model: 512
+  n_heads: 8
+  n_layers: 6
+  d_ff_mlp: 512
+  d_ff_kan: 1584
+  dropout: 0.1
+
+kan:
+  control_points: 7
+  degree: 3
+  range_min: -1.0
+  range_max: 15.0
+
+training:
+  epochs: 10
+  lr: 0.0003
+  weight_decay: 0.00001
+  grad_clip: 1.0
+  log_every: 50
+  # Full pass over val set; set to 0 to validate only at end of each epoch
+  val_every: 1000
+  # Max val batches per validation call (0 = full val set, which can be huge)
+  max_val_batches: 100
+  # Causal attention *patterns* (T×T softmax over keys) per layer/head → TensorBoard Images
+  log_attention: true
+  # Optimizer steps between attention image dumps. Set to 0 for epoch-end only.
+  log_attention_every: 500
+  generate_every_epoch: true
+  generate_tokens: 100
+  checkpoint_dir: "checkpoints"

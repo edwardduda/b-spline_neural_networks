@@ -1,0 +1,11 @@
+torch
+transformers
+datasets
+huggingface_hub
+tqdm
+tensorboard
+matplotlib
+python-dotenv
+pyyaml
+dash
+plotly
